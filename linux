@@ -222,3 +222,43 @@ fancy_echo "Installing your personal additions from ~/.laptop.local ..."
   fi
 ### end common-components/personal-additions
 
+
+sudo aptitude update
+### end linux-components/debian-package-update
+
+fancy_echo "Instal Boxes to draw any kind of ASCII art box around its input text or code ..."
+  sudo aptitude install -y boxes
+
+fancy_echo "Installing LAMP Stack - Linux,Apache,Mysql, PHP ..."
+
+fancy_echo "Installing apache2, to serve local websites/webapps ..."
+  sudo aptitude install -y apache2
+
+fancy_echo "Installing Mysql ..."
+  sudo aptitude install -y mysql-server libapache2-mod-auth-mysql php5-mysql
+  sudo mysql_install_db
+  sudo /usr/bin/mysql_secure_installation
+
+fancy_echo "Installing Php5, Libapache2-mod PhpCurl, Mcrypt ..."
+  sudo aptitude install -y php5 libapache2-mod-php5 php5-mcrypt php5-curl php5-gd
+
+fancy_echo "Add index.php to the beginning of index files. The page should look like this: ..."
+  echo -e "\n\t<IfModule mod_dir.c>\n\t\tDirectoryIndex index.php index.html index.cgi index.pl index.php index.xhtml index.htm\n\t</IfModule>" | boxes -d ian_jones
+  sudo nano /etc/apache2/mods-enabled/dir.conf
+
+fancy_echo "Installing Apache2 ..."
+  sudo service apache2 restart
+
+fancy_echo "Installing PhpMyAdmin ..."
+  sudo aptitude install -y phpmyadmin apache2-utils
+  sudo nano /etc/apache2/apache2.conf
+  fancy_echo "Include /etc/phpmyadmin/apache.conf"
+
+### end LAMP-stack
+
+fancy_echo "Instal Composer globally ..."
+  curl -sS https://getcomposer.org/installer | php
+  sudo mv composer.phar /usr/local/bin/composer
+
+fancy_echo "Install laravel globally..."
+  composer global require "laravel/installer"
