@@ -253,7 +253,6 @@ fancy_echo "Installing PhpMyAdmin ..."
   sudo aptitude install -y phpmyadmin apache2-utils
   sudo nano /etc/apache2/apache2.conf
   fancy_echo "Include /etc/phpmyadmin/apache.conf"
-
 ### end LAMP-stack
 
 fancy_echo "Instal Composer globally ..."
